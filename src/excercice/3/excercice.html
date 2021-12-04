@@ -1,0 +1,169 @@
+<html>
+  <head lang="fr">
+    <meta charset="UTF-8" />
+    <title>My First Parcel App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../style.css" />
+  </head>
+  <body>
+    <ul id="errors" class="bg-red-300 m-4 flex flex-col gap-1"></ul>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <span class="font-semibold text-xl tracking-tight">AXA AY11 DOJO</span>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow" id="liens">
+          <a
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Docs
+          </a>
+          <a
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Examples
+          </a>
+          <a
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          >
+            Blog
+          </a>
+        </div>
+      </div>
+    </nav>
+    <main class="bg-slate-200 h-screen">
+      <h1 class="text-3xl font-bold underline p-4">Restitution des datas</h1>
+
+      <h2 class="text-2xl font-bold underline p-4">Tableau</h2>
+      <table class="table-auto m-4">
+        <tr id="head">
+          <td class="px-4 py-2"></td>
+          <th class="px-4 py-2 bg-gray-300">Lille</th>
+          <th class="px-4 py-2 bg-gray-300">Paris</th>
+          <th class="px-4 py-2 bg-gray-300">Dunkerque</th>
+        </tr>
+        <tbody>
+          <tr id="body1" class="bg-gray-100">
+            <th>Juin</th>
+            <td class="border px-4 py-2">30°</td>
+            <td class="border px-4 py-2">35°</td>
+            <td class="border px-4 py-2">40°</td>
+          </tr>
+          <tr id="body2" class="bg-gray-100">
+            <th>Juillet</th>
+            <td class="border px-4 py-2">30°</td>
+            <td class="border px-4 py-2">35°</td>
+            <td class="border px-4 py-2">40°</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="text-2xl font-bold underline p-4">Liste</h2>
+      <div id="dataSansTable">
+        <div>
+          <div>
+            <span class="font-semibold">Prénom Nom</span>
+            <span>John Doe</span>
+          </div>
+          <div>
+            <span class="font-semibold">Status</span>
+            <span>Fermé</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-zinc-400">footer</footer>
+
+    <div class="w-full flex justify-center p-4">
+      <button
+        onclick="validate()"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2"
+      >
+        Valider l'excercice
+      </button>
+    </div>
+  </body>
+
+  <script>
+    function validate() {
+      const body = document.querySelector("body");
+      const ul = document.querySelector("#errors");
+      const errors = [];
+
+      ul.innerHTML = "";
+
+      // check that the table have child THead and TBody
+      const table = body.querySelector("table");
+      const thead = table.querySelector("thead");
+      const caption = table.querySelector("caption");
+
+      if (caption) {
+        console.log("La table a une balise caption");
+      } else {
+        errors.push("La table n'a pas de balise caption");
+      }
+
+      if (caption?.textContent.toLowerCase().includes("tableau")) {
+        errors.push("La balise caption ne doit pas contenir le mot tableau");
+      }
+
+      if (thead) {
+        console.log("La table a une balise thead");
+      } else {
+        errors.push("La table n'a pas de balise thead");
+      }
+
+      // check that TH have a scope row or col
+      const ths = Array.from(table.querySelectorAll("th"));
+      if (ths.every((th) => th.hasAttribute("scope"))) {
+        console.log("Les balises th ont un attribut scope");
+      } else {
+        errors.push("Une ou plusieurs balises th n'ont pas d'attribut scope");
+      }
+
+      if (
+        ths.every(
+          (th) =>
+            th.getAttribute("scope") === "col" ||
+            th.getAttribute("scope") === "row"
+        )
+      ) {
+        console.log(
+          "Les balises th ont un attribut scope avec la valeur col ou row"
+        );
+      } else {
+        errors.push(
+          "Les balises th n'ont pas d'attribut scope avec la valeur col ou row"
+        );
+      }
+
+      // check that dataSansTable have only dt/dl/dd childs
+
+      const dataSansTable = body.querySelector("#dataSansTable");
+      const children = Array.from(dataSansTable.children);
+      if (
+        children.every((child) => ["DT", "DL", "DD"].includes(child.nodeName))
+      ) {
+        console.log(
+          "Les enfants de la section Liste sont bien des balises DT, DL ou DD"
+        );
+      } else {
+        errors.push(
+          "Les enfants de la section Liste ne sont pas des balises DT, DL ou DD"
+        );
+      }
+
+      if (errors.length) {
+        ul.innerHTML = errors
+          .map((error) => `<li class="p-1">${error}</li>`)
+          .join("");
+      }
+
+      if (errors.length === 0) {
+        window.parent.postMessage("ex3", "*");
+      }
+    }
+  </script>
+</html>

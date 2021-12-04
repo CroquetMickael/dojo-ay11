@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../style.css" />
+  </head>
+  <body>
+    <p class="text-3xl font-bold underline">BASE HTML D'UN SITE</p>
+    <ul id="errors" class="bg-red-300 m-4"></ul>
+
+    <div class="w-full flex justify-center p-4">
+      <button
+        onclick="validate()"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2"
+      >
+        Valider l'excercice
+      </button>
+    </div>
+  </body>
+
+  <script>
+    function validate() {
+      const html = document.querySelector("html");
+      const ul = document.querySelector("#errors");
+      const errors = [];
+
+      ul.innerHTML = "";
+
+      if (html.getAttribute("lang") === "fr") {
+        console.log("La langue de la page est bien en français");
+      } else {
+        errors.push("La langue de la page n'est pas en français");
+      }
+
+      const title = document.querySelector("title");
+      if (title) {
+        console.log("La page a un titre");
+      } else {
+        errors.push("La page n'a pas de titre");
+      }
+
+      if (errors.length) {
+        ul.innerHTML = errors.map((error) => `<li>${error}</li>`).join("");
+      }
+
+      if (errors.length === 0) {
+        window.parent.postMessage("ex1", "*");
+      }
+    }
+  </script>
+</html>
