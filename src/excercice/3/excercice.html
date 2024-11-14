@@ -37,42 +37,56 @@
     <main class="bg-slate-200 h-screen">
       <h1 class="text-3xl font-bold underline p-4">Restitution des datas</h1>
 
-      <h2 class="text-2xl font-bold underline p-4">Tableau</h2>
-      <table class="table-auto m-4">
-        <tr id="head">
-          <td class="px-4 py-2"></td>
-          <th class="px-4 py-2 bg-gray-300">Lille</th>
-          <th class="px-4 py-2 bg-gray-300">Paris</th>
-          <th class="px-4 py-2 bg-gray-300">Dunkerque</th>
-        </tr>
-        <tbody>
-          <tr id="body1" class="bg-gray-100">
-            <th>Juin</th>
-            <td class="border px-4 py-2">30°</td>
-            <td class="border px-4 py-2">35°</td>
-            <td class="border px-4 py-2">40°</td>
-          </tr>
-          <tr id="body2" class="bg-gray-100">
-            <th>Juillet</th>
-            <td class="border px-4 py-2">30°</td>
-            <td class="border px-4 py-2">35°</td>
-            <td class="border px-4 py-2">40°</td>
-          </tr>
-        </tbody>
-      </table>
-      <h2 class="text-2xl font-bold underline p-4">Liste</h2>
-      <div id="dataSansTable">
-        <div>
-          <div>
-            <span class="font-semibold">Prénom Nom</span>
-            <span>John Doe</span>
-          </div>
-          <div>
-            <span class="font-semibold">Status</span>
-            <span>Fermé</span>
+      <h2 id="subtitle">
+        <span class="text-2xl font-bold underline p-4">Evennement</span>
+      </h2>
+
+      <h2 id="subtitle">
+        <span class="text-2xl font-bold underline p-4">Actualité</span>
+      </h2>
+      <div class="flex items-center justify-center p-12">
+        <div class="mx-auto w-full max-w-[550px]">
+          <table class="table-auto m-4">
+            <tr id="head">
+              <td class="px-4 py-2"></td>
+              <th class="px-4 py-2 bg-gray-300">Lille</th>
+              <th class="px-4 py-2 bg-gray-300">Paris</th>
+              <th class="px-4 py-2 bg-gray-300">Dunkerque</th>
+            </tr>
+            <tbody>
+              <tr id="body1" class="bg-gray-100">
+                <th>Juin</th>
+                <td class="border px-4 py-2">30°</td>
+                <td class="border px-4 py-2">35°</td>
+                <td class="border px-4 py-2">40°</td>
+              </tr>
+              <tr id="body2" class="bg-gray-100">
+                <th>Juillet</th>
+                <td class="border px-4 py-2">30°</td>
+                <td class="border px-4 py-2">35°</td>
+                <td class="border px-4 py-2">40°</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div id="dataSansTable">
+            <div>
+              <div>
+                <span class="font-semibold">Prénom Nom</span>
+                <span>Donald Trump</span>
+              </div>
+              <div>
+                <span class="font-semibold">Status</span>
+                <span>Président</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <h2 id="subtitle">
+        <span class="text-2xl font-bold underline p-4">Contacts</span>
+      </h2>
     </main>
     <footer class="bg-zinc-400">footer</footer>
 

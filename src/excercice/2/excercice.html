@@ -7,7 +7,10 @@
   </head>
   <body>
     <ul id="errors" class="bg-red-300 m-4 flex flex-col gap-1"></ul>
-    <div id="navigation" class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <div
+      id="navigation"
+      class="flex items-center justify-between flex-wrap bg-teal-500 p-6"
+    >
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <span class="font-semibold text-xl tracking-tight">AXA AY11 DOJO</span>
       </div>
@@ -39,22 +42,17 @@
         STRUCTURE DE BASE D'UN SITE
       </span>
 
-      <div id="article">
-        <p>TITRE DE MON ARTICLE</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime facere
-          qui fuga ipsum cupiditate. Eius illo alias eveniet. Minima repellat
-          sequi sunt? Voluptatum, explicabo sequi ipsam tenetur perspiciatis
-          dolor sit!
-        </p>
+      <span id="subtitle">
+        <span class="text-2xl font-bold underline p-4">Evennement</span>
+      </span>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime facere
-          qui fuga ipsum cupiditate. Eius illo alias eveniet. Minima repellat
-          sequi sunt? Voluptatum, explicabo sequi ipsam tenetur perspiciatis
-          dolor sit!
-        </p>
-      </div>
+      <span id="subtitle">
+        <span class="text-2xl font-bold underline p-4">Actualité</span>
+      </span>
+
+      <spanh2 id="subtitle">
+        <span class="text-2xl font-bold underline p-4">Contacts</span>
+      </spanh2>
     </div>
     <div class="bg-zinc-400">footer</div>
 
@@ -89,7 +87,7 @@
       // check that all children of #liens are anchors
       const liensNotA = [];
       liens.childNodes.forEach((child) => {
-        if(child.nodeName === "#text") {
+        if (child.nodeName === "#text") {
           return;
         }
         if (child.nodeName !== "A") {
@@ -128,12 +126,27 @@
         errors.push("La page n'a pas de titre");
       }
 
-      // check that div id is article html5
-      const article = body.querySelector("#article");
-      console.log(article?.nodeName);
-      article?.nodeName === "ARTICLE"
-        ? console.log("La page a une balise article")
-        : errors.push("La page n'a pas de balise article");
+      // check that all subtitle id are h2
+      const subtitles = body.querySelectorAll("#subtitle");
+      subtitles.forEach((subtitle) => {
+        const h2 = subtitle.nodeName === "H2";
+        if (h2) {
+          console.log("La page a un sous-titre");
+        } else {
+          if (
+            errors.find((error) =>
+              error.includes(
+                "La page n'a pas de sous-titre de type H2 pour le(s) id(s) subtitle"
+              )
+            )
+          ) {
+            return;
+          }
+          errors.push(
+            "La page n'a pas de sous-titre de type H2 pour le(s) id(s) subtitle"
+          );
+        }
+      });
 
       if (errors.length) {
         ul.innerHTML = errors

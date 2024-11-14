@@ -14,6 +14,7 @@
 
       details {
         padding: 0.5rem;
+        margin: 1rem;
         border: 1px solid #ccc;
 
         summary {
@@ -23,20 +24,18 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body style="height: 100%; overflow-y: hidden">
     <div style="display: flex; flex-direction: row">
       <div style="width: 75%" id="exercice">
-        <h1 id="current" class="text-3xl font-bold underline p-4">
-          Exercice 1
-        </h1>
         <iframe
           style="position: inherit; width: 100%; height: 90%"
           src="src/excercice/1/excercice.html?cached=1633940130000"
         ></iframe>
       </div>
       <div style="height: 100vh; width: 60%; overflow-y: scroll; padding: 1rem">
-        <h1 class="text-3xl font-bold underline">Exercice 1</h1>
+        <h1 class="text-3xl font-bold underline" id="ex1">Exercice 1</h1>
         <details>
           <summary>Instructions</summary>
           Dans cet exercice, vous devez modifier le HTML se trouvant dans le
@@ -55,7 +54,7 @@
           pour une meilleure accessibilité car les lecteurs d'écran peuvent lire
           le contenu de la page dans la langue définie.
         </details>
-        <h1 class="text-3xl font-bold underline">Exercice 2</h1>
+        <h1 class="text-3xl font-bold underline" id="ex2">Exercice 2</h1>
         <details>
           <summary>Instructions</summary>
           <p>
@@ -106,7 +105,7 @@
           </p>
         </details>
 
-        <h1 class="text-3xl font-bold underline">Exercice 3</h1>
+        <h1 class="text-3xl font-bold underline" id="ex3">Exercice 3</h1>
         <details>
           <summary>Instructions</summary>
           <p>
@@ -148,7 +147,7 @@
           </p>
         </details>
 
-        <h1 class="text-3xl font-bold underline">Exercice 4</h1>
+        <h1 class="text-3xl font-bold underline" id="ex4">Exercice 4</h1>
         <details>
           <summary>Instructions</summary>
           <p>
@@ -219,7 +218,6 @@
         "src/excercice/1/excercice.html?cached=1633940130000"
       );
     } else {
-      current.textContent = `Exercice ${lastFinishedExercice + 2}`;
       iframe.setAttribute(
         "src",
         `src/excercice/${
@@ -234,7 +232,7 @@
       }
 
       if (event.data === "ex1") {
-        current.textContent = "Exercice 2";
+        document.querySelector("#ex1").classList.add("text-green-500");
         iframe.setAttribute(
           "src",
           "src/excercice/2/excercice.html?cached=1633940130000"
@@ -243,8 +241,8 @@
       }
 
       if (event.data === "ex2") {
-        current.textContent = "Exercice 3";
-        iframe.setAttribute(
+        document.querySelector("#ex2").classList.add("text-green-500");
+                iframe.setAttribute(
           "src",
           "src/excercice/3/excercice.html?cached=1633940130000"
         );
@@ -252,7 +250,7 @@
       }
 
       if (event.data === "ex3") {
-        current.textContent = "Exercice 4";
+        document.querySelector("#ex3").classList.add("text-green-500");
         iframe.setAttribute(
           "src",
           "src/excercice/4/excercice.html?cached=1633940130000"
