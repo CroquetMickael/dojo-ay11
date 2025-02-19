@@ -40,6 +40,7 @@
       }
 
       if (errors.length) {
+        ul.className += " p-4"
         ul.innerHTML = errors.map((error) => `<li>${error}</li>`).join("");
       }
 
