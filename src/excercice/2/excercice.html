@@ -1,163 +1,167 @@
 <html>
-<head lang="fr">
-    <meta charset="UTF-8"/>
+  <head lang="fr">
+    <meta charset="UTF-8" />
     <title>My First Parcel App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../../../style.css"/>
-</head>
-<body>
-<ul id="errors" class="bg-red-300 m-4 flex flex-col gap-1"></ul>
-<div
-        id="navigation"
-        class="flex items-center justify-between flex-wrap bg-teal-500 p-6"
->
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../style.css" />
+  </head>
+  <body>
+    <ul id="errors" class="bg-red-300 m-4 flex flex-col gap-1"></ul>
+    <div
+      id="navigation"
+      class="flex items-center justify-between flex-wrap bg-teal-500 p-6"
+    >
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
         <span class="font-semibold text-xl tracking-tight">AXA AY11 DOJO</span>
-    </div>
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <ul class="text-sm lg:flex-grow" id="liens">
-            <li
-                    href="#responsive-header"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-            >
-                Docs
-            </li>
-            <li
-                    href="#responsive-header"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-            >
-                Examples
-            </li>
-            <li
-                    href="#responsive-header"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-            >
-                Blog
-            </li>
+          <li
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Docs
+          </li>
+          <li
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Examples
+          </li>
+          <li
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          >
+            Blog
+          </li>
         </ul>
+      </div>
     </div>
-</div>
-<div class="bg-slate-200 h-screen">
+    <div id="main" class="bg-slate-200 h-screen">
       <span class="text-3xl font-bold underline p-4">
         STRUCTURE DE BASE D'UN SITE
       </span>
 
-    <span id="subtitle">
+      <span id="subtitle">
         <span class="text-2xl font-bold underline p-4">Evennement</span>
       </span>
 
-    <span id="subtitle">
+      <span id="subtitle">
         <span class="text-2xl font-bold underline p-4">Actualité</span>
       </span>
 
-    <spanh2 id="subtitle">
+      <spanh2 id="subtitle">
         <span class="text-2xl font-bold underline p-4">Contacts</span>
-    </spanh2>
-</div>
-<div class="bg-zinc-400">footer</div>
+      </spanh2>
+    </div>
+    <div id="footer" class="bg-zinc-400">footer</div>
 
-<div class="w-full flex justify-center p-4">
-    <button
-            onclick="validate()"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2"
-    >
+    <div class="w-full flex justify-center p-4">
+      <button
+        onclick="validate()"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2"
+      >
         Valider l'excercice
-    </button>
-</div>
-</body>
+      </button>
+    </div>
+  </body>
 
-<script>
+  <script>
     function validate() {
-        const body = document.querySelector("body");
-        const ul = document.querySelector("#errors");
-        const errors = [];
+      const body = document.querySelector("body");
+      const ul = document.querySelector("#errors");
+      const errors = [];
 
-        ul.innerHTML = "";
+      ul.innerHTML = "";
 
-        // check that body contains nav, main and footer
-        const nav = body.querySelector("nav");
-        if (nav) {
-            console.log("La page a une balise nav");
-        } else {
-            errors.push("La page n'a pas de balise nav");
+      // check that body contains nav, main and footer
+      const nav = body.querySelector("nav");
+      if (nav) {
+        console.log("La page a une balise nav");
+      } else {
+        errors.push("La page n'a pas de balise nav pour la balise avec l'id #navigation");
+      }
+
+      const liens = body.querySelector("#liens");
+      console.log(liens);
+      // check that all children of #liens are anchors
+      const liensNotA = [];
+      liens.childNodes.forEach((child) => {
+        if (child.nodeName === "#text") {
+          return;
         }
+        if (child.nodeName !== "A") {
+          liensNotA.push(child);
+        }
+      });
 
-        const liens = body.querySelector("#liens");
-        console.log(liens);
-        // check that all children of #liens are anchors
-        const liensNotA = [];
-        liens.childNodes.forEach((child) => {
-            if (child.nodeName === "#text") {
-                return;
-            }
-            if (child.nodeName !== "A") {
-                liensNotA.push(child);
-            }
+      if (liensNotA.length) {
+        errors.push("L'un des enfants de #liens ne sont pas des balises a");
+      } else {
+        console.log("Tous les enfants de #liens sont des balises a");
+      }
+
+      const main = body.querySelector("main");
+
+      if (main) {
+        console.log("La page a une balise main");
+      } else {
+        errors.push("La page n'a pas de balise main au niveau de l'id #main");
+      }
+
+      const footer = body.querySelector("footer");
+
+      if (footer) {
+        console.log("La page a une balise footer");
+      } else {
+        errors.push("La page n'a pas de balise footer au niveau de l'id #footer");
+      }
+
+      // check that body contains a title
+      const title = body.querySelector("h1");
+
+      if (title) {
+        console.log("La page a un titre");
+      } else {
+        errors.push("La page n'a pas de titre de type H1");
+      }
+
+      // check that all subtitle id are h2
+      const subtitles = body.querySelectorAll("#subtitle");
+      subtitles.forEach((subtitle) => {
+        const h2 = subtitle.nodeName === "H2";
+        if (h2) {
+          console.log("La page a un sous-titre");
+        } else {
+          if (
+            errors.find((error) =>
+              error.includes(
+                "La page n'a pas de sous-titre de type H2 pour le(s) id(s) subtitle"
+              )
+            )
+          ) {
+            return;
+          }
+          errors.push(
+            "La page n'a pas de sous-titre de type H2 pour le(s) id(s) subtitle"
+          );
+        }
+      });
+
+      if (errors.length) {
+        ul.className += " p-4";
+        scrollTo({
+          behavior: "smooth",
+          top: 0,
         });
+        ul.innerHTML = errors
+          .map((error) => `<li class="p-1">${error}</li>`)
+          .join("");
+      }
 
-        if (liensNotA.length) {
-            errors.push("L'un des enfants de #liens ne sont pas des balises a");
-        } else {
-            console.log("Tous les enfants de #liens sont des balises a");
-        }
-
-        const main = body.querySelector("main");
-
-        if (main) {
-            console.log("La page a une balise main");
-        } else {
-            errors.push("La page n'a pas de balise main");
-        }
-
-        const footer = body.querySelector("footer");
-
-        if (footer) {
-            console.log("La page a une balise footer");
-        } else {
-            errors.push("La page n'a pas de balise footer");
-        }
-
-        // check that body contains a title
-        const title = body.querySelector("h1");
-
-        if (title) {
-            console.log("La page a un titre");
-        } else {
-            errors.push("La page n'a pas de titre");
-        }
-
-        // check that all subtitle id are h2
-        const subtitles = body.querySelectorAll("#subtitle");
-        subtitles.forEach((subtitle) => {
-            const h2 = subtitle.nodeName === "H2";
-            if (h2) {
-                console.log("La page a un sous-titre");
-            } else {
-                if (
-                    errors.find((error) =>
-                        error.includes(
-                            "La page n'a pas de sous-titre de type H2 pour le(s) id(s) subtitle"
-                        )
-                    )
-                ) {
-                    return;
-                }
-                errors.push(
-                    "La page n'a pas de sous-titre de type H2 pour le(s) id(s) subtitle"
-                );
-            }
-        });
-
-        if (errors.length) {
-            ul.className += " p-4"
-            ul.innerHTML = errors
-                .map((error) => `<li class="p-1">${error}</li>`)
-                .join("");
-        }
-
-        if (errors.length === 0) {
-            window.parent.postMessage("ex2", "*");
-        }
+      if (errors.length === 0) {
+        window.parent.postMessage("ex2", "*");
+      }
     }
-</script>
+  </script>
 </html>

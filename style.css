@@ -3,9 +3,35 @@
 @tailwind utilities;
 
 h3 {
-    @apply text-xl font-bold py-2;
+  @apply text-xl font-bold py-2;
 }
 
 ul {
-    @apply list-disc list-inside flex flex-col gap-2 my-4
+  @apply list-disc list-inside flex flex-col gap-2 my-4;
+}
+
+summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+summary::after {
+  content: "";
+  width: 18px;
+  height: 10px;
+  background: url("https://uploads.sitepoint.com/wp-content/uploads/2023/10/1697699669arrow.svg")
+    no-repeat;
+  background-size: cover;
+  margin-left: 0.75em;
+  transition: 0.2s;
+}
+
+details[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }
